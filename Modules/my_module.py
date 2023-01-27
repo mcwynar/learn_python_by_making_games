@@ -15,3 +15,5 @@ class Test:
 def sum_calculator(*args):
     # without *   --> args instead *args
     return sum(args)
+if __name__ == '__main__':
+    print(__name__)
