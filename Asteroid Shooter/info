@@ -1,0 +1,5 @@
+Display surface
+This is the image that the player sees at the end of every game loop
+Any other graphics(player, enemies, background, text) will be placed on this
+There can only be a single display surface and any image not on it will not be shown
+
