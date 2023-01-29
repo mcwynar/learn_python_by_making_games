@@ -6,6 +6,8 @@ display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 # set window title
 pygame.display.set_caption('Asteroid Shooter')
 
+clock = pygame.time.Clock()
+
 # create a surface
 # test_surf = pygame.Surface((400, 100))
 # we need to attach the surface to the display surface
@@ -13,6 +15,7 @@ pygame.display.set_caption('Asteroid Shooter')
 
 # importing images
 ship_surf = pygame.image.load('./asteroid_shooter_files/graphics/ship.png').convert_alpha()
+ship_y_pos = 500
 bg_surf = pygame.image.load('./asteroid_shooter_files/graphics/background.png').convert()
 
 # import text
@@ -29,6 +32,9 @@ while True:   # run forever -> keeps our game running
             pygame.quit()
             sys.exit()
 
+    # framerate limit
+    clock.tick(60)
+
     # 2. Updates
     display_surface.fill((0, 0, 0))
 
@@ -39,7 +45,8 @@ while True:   # run forever -> keeps our game running
     # display_surface.blit(test_surf, (WINDOW_WIDTH - test_surf.get_width(), (WINDOW_HEIGHT - test_surf.get_height())/2))
 
     display_surface.blit(bg_surf, (0, 0))
-    display_surface.blit(ship_surf, (300, 500))
+    ship_y_pos -= 1
+    display_surface.blit(ship_surf, (300, ship_y_pos))
 
     display_surface.blit(text_surf, (WINDOW_WIDTH - text_surf.get_width(), 0))
 

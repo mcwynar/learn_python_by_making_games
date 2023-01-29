@@ -76,3 +76,17 @@ This surface you can use like any other surface
 
 
 -------------------------------------------------------------------
+
+
+The speed of our game is determined by how fast the while loop runs
+
+                                            Huge differences
+Really slow cumputer  ------------------------------------------------------> Really fast computer
+
+The game will run inconsistently on different systems
+Since some scenes are harder to render than others, it might even run inconsistently on the same system!
+
+One easy solution is to limit the maximum framerate
+So that our game can never run faster than 60 frames per second
+
+-------------------------------------------------------------------
