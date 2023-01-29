@@ -89,4 +89,34 @@ Since some scenes are harder to render than others, it might even run inconsiste
 One easy solution is to limit the maximum framerate
 So that our game can never run faster than 60 frames per second
 
+
+-------------------------------------------------------------------
+
+
+Rectangles
+Rectangles (or rects) solve a few problems
+They make it easier (and more precise) to place surfaces
+They are used for collisions
+They can be used for drawing
+
+Rectangles are used to place surfaces
+Instead of specifying a position in blit you can specify a rect
+That is giving you much more control
+
+
+            topleft             midtop          topright
+
+            midleft             center          midright
+
+            bottomleft          midbottom       bottomright
+
+
+Using rects with blit
+display_surface.blit(surface, pos or rect)
+You create a surface and a rect:
+surface stores the image
+rect stores position and movement
+Only the rect moves!!
+
+
 -------------------------------------------------------------------

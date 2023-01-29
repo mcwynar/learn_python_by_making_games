@@ -15,12 +15,16 @@ clock = pygame.time.Clock()
 
 # importing images
 ship_surf = pygame.image.load('./asteroid_shooter_files/graphics/ship.png').convert_alpha()
-ship_y_pos = 500
+# ship_y_pos = 500
 bg_surf = pygame.image.load('./asteroid_shooter_files/graphics/background.png').convert()
+ship_rect = ship_surf.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
+# print(ship_rect)
+
 
 # import text
 font = pygame.font.Font('./asteroid_shooter_files/graphics/subatomic.ttf',50)
 text_surf = font.render('Space', True,'White')
+text_rect = text_surf.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT-80))
 
 # keeps the code going
 while True:   # run forever -> keeps our game running
@@ -45,10 +49,13 @@ while True:   # run forever -> keeps our game running
     # display_surface.blit(test_surf, (WINDOW_WIDTH - test_surf.get_width(), (WINDOW_HEIGHT - test_surf.get_height())/2))
 
     display_surface.blit(bg_surf, (0, 0))
-    ship_y_pos -= 1
-    display_surface.blit(ship_surf, (300, ship_y_pos))
+    # ship_y_pos -= 1
+    # display_surface.blit(ship_surf, (300, 500))
+    display_surface.blit(ship_surf, ship_rect)
+    if ship_rect.top > 0:
+        ship_rect.y -= 4   #or  ship_rect.top -= 4 or  ship_rect.bottom -= 4
 
-    display_surface.blit(text_surf, (WINDOW_WIDTH - text_surf.get_width(), 0))
+    display_surface.blit(text_surf, text_rect)
 
     # 3. Show the frame to the player / update the display surface
     pygame.display.update()
