@@ -51,3 +51,11 @@ You can also specify your own with rgb tuples -- (red, green, blue); value 0-255
 
 
 -------------------------------------------------------------------
+
+
+Blit places the top-left point of a surface
+x++ --> moves right
+y++ --> moves down
+
+
+-------------------------------------------------------------------
