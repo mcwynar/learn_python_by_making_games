@@ -7,10 +7,17 @@ display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption('Asteroid Shooter')
 
 # create a surface
-test_surf = pygame.Surface((400, 100))
+# test_surf = pygame.Surface((400, 100))
 # we need to attach the surface to the display surface
 # both the display surface and the surface are black
 
+# importing images
+ship_surf = pygame.image.load('./asteroid_shooter_files/graphics/ship.png').convert_alpha()
+bg_surf = pygame.image.load('./asteroid_shooter_files/graphics/background.png').convert()
+
+# import text
+font = pygame.font.Font('./asteroid_shooter_files/graphics/subatomic.ttf',50)
+text_surf = font.render('Space', True,'White')
 
 # keeps the code going
 while True:   # run forever -> keeps our game running
@@ -23,14 +30,18 @@ while True:   # run forever -> keeps our game running
             sys.exit()
 
     # 2. Updates
-    display_surface.fill((15,140,122))
-    test_surf.fill((219,114,16))
+    display_surface.fill((0, 0, 0))
 
+    # test_surf.fill((219,114,16))
     # place a surface
     # display_surface.blit(test_surf, (880,310))
-
     # Exercise: Place the test surface so that the is on the right side of the display surface
-    display_surface.blit(test_surf, (WINDOW_WIDTH - test_surf.get_width(), (WINDOW_HEIGHT - test_surf.get_height())/2 ))
+    # display_surface.blit(test_surf, (WINDOW_WIDTH - test_surf.get_width(), (WINDOW_HEIGHT - test_surf.get_height())/2))
+
+    display_surface.blit(bg_surf, (0, 0))
+    display_surface.blit(ship_surf, (300, 500))
+
+    display_surface.blit(text_surf, (WINDOW_WIDTH - text_surf.get_width(), 0))
 
     # 3. Show the frame to the player / update the display surface
     pygame.display.update()

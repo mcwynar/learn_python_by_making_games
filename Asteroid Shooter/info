@@ -59,3 +59,20 @@ y++ --> moves down
 
 
 -------------------------------------------------------------------
+
+
+Images
+Images can be imported with pygame.image.load('path')
+You should also convert the image for better performance
+
+
+-------------------------------------------------------------------
+
+
+Text
+We first need a font object
+This font object can render a string it returns a surface
+This surface you can use like any other surface
+
+
+-------------------------------------------------------------------
