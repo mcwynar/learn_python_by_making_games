@@ -1,5 +1,53 @@
+-------------------------------------------------------------------
+
 Display surface
 This is the image that the player sees at the end of every game loop
 Any other graphics(player, enemies, background, text) will be placed on this
 There can only be a single display surface and any image not on it will not be shown
 
+
+-------------------------------------------------------------------
+
+
+The game loop
+The entire logic of our game will run in a while True loop
+Inside of it, we will check for any input, update all parts of the game and place graphics on the display surface
+At the end of the loop, we will show the display surface
+
+
+-------------------------------------------------------------------
+
+
+Adding images
+To show images, we need a surface
+We have 2 surface types:
+- display surface  --> The main canvas. There is only a single display surface. It will always be shown
+- surface --> Basically an image. There can be unlimited surfaces. A surface will only be visible if it is on the display surface
+
+Although they also share similar parts like the .fill method
+
+Surfaces can be created in 3 ways:
+1. Importing an image(png, jpeg)
+2. Creating one in pygame
+3. Creating text
+
+
+-------------------------------------------------------------------
+
+
+Placing a surface
+Surfaces are placed in the display surface with the lit method(block image transfer)
+display_surface.blit(surface, position)   -- position will be (x, y) / [x, y]
+The position always places the top-left of the surface
+
+
+-------------------------------------------------------------------
+
+
+Color
+Pygame has lots of inbuilt color options
+You can also specify your own with rgb tuples -- (red, green, blue); value 0-255 for each color
+
+
+
+-------------------------------------------------------------------
