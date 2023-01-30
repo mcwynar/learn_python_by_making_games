@@ -120,3 +120,13 @@ Only the rect moves!!
 
 
 -------------------------------------------------------------------
+
+
+Getting input
+Support input devices: mouse, keyboard, touchscreen and controllers
+You can either access the input in the event loop or via a separate methods outside of it
+Most input are done via methods outside of the event loop
+The input for the player should be inside the player class (this will make more sense later)
+
+
+-------------------------------------------------------------------

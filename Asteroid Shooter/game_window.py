@@ -35,9 +35,25 @@ while True:   # run forever -> keeps our game running
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        # if event.type == pygame.MOUSEMOTION:
+        #     # print(event.pos)
+        #     # print(event.buttons)
+        #     # print(event.rel)
+        #     ship_rect.center = event.pos
+        # if event.type == pygame.MOUSEBUTTONUP:
+        #     # print('Shoot')
+        #     print(event.pos)
 
     # framerate limit
     clock.tick(60)
+
+
+
+
+    #mouse input
+    # print(pygame.mouse.get_pos())
+    # print(pygame.mouse.get_pressed())
+    # ship_rect.center = pygame.mouse.get_pos()
 
     # 2. Updates
     display_surface.fill((0, 0, 0))
@@ -52,10 +68,14 @@ while True:   # run forever -> keeps our game running
     # ship_y_pos -= 1
     # display_surface.blit(ship_surf, (300, 500))
     display_surface.blit(ship_surf, ship_rect)
-    if ship_rect.top > 0:
-        ship_rect.y -= 4   #or  ship_rect.top -= 4 or  ship_rect.bottom -= 4
+    # if ship_rect.top > 0:
+    #     ship_rect.y -= 4   #or  ship_rect.top -= 4 or  ship_rect.bottom -= 4
 
     display_surface.blit(text_surf, text_rect)
+
+
+
+
 
     # 3. Show the frame to the player / update the display surface
     pygame.display.update()
