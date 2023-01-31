@@ -1,5 +1,6 @@
 import pygame, sys
 
+# game init
 pygame.init()
 WINDOW_WIDTH, WINDOW_HEIGHT = 1280, 720
 display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -19,6 +20,9 @@ ship_surf = pygame.image.load('./asteroid_shooter_files/graphics/ship.png').conv
 bg_surf = pygame.image.load('./asteroid_shooter_files/graphics/background.png').convert()
 ship_rect = ship_surf.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
 # print(ship_rect)
+laser_surf = pygame.image.load('./asteroid_shooter_files/graphics/laser.png').convert_alpha()
+# laser_rect = laser_surf.get_rect(midbottom = (ship_rect.centerx, ship_rect.top))
+laser_rect = laser_surf.get_rect( midbottom= ship_rect.midtop)
 
 
 # import text
@@ -53,7 +57,7 @@ while True:   # run forever -> keeps our game running
     #mouse input
     # print(pygame.mouse.get_pos())
     # print(pygame.mouse.get_pressed())
-    # ship_rect.center = pygame.mouse.get_pos()
+    ship_rect.center = pygame.mouse.get_pos()
 
     # 2. Updates
     display_surface.fill((0, 0, 0))
@@ -70,6 +74,8 @@ while True:   # run forever -> keeps our game running
     display_surface.blit(ship_surf, ship_rect)
     # if ship_rect.top > 0:
     #     ship_rect.y -= 4   #or  ship_rect.top -= 4 or  ship_rect.bottom -= 4
+    laser_rect.y -= 10
+    display_surface.blit(laser_surf, laser_rect)
 
     display_surface.blit(text_surf, text_rect)
 
@@ -77,5 +83,5 @@ while True:   # run forever -> keeps our game running
 
 
 
-    # 3. Show the frame to the player / update the display surface
+    # 3. Show the frame to the player / update the display surface; draw the final frame
     pygame.display.update()

@@ -130,3 +130,24 @@ The input for the player should be inside the player class (this will make more 
 
 
 -------------------------------------------------------------------
+
+
+Surfaces and rects
+
+display surface
+The main surface everything is drawn on
+There can only be a single one
+
+
+                        surface                                                                     rect
+Individual images (for example, the ship or he background)                  Rectangles to use for placement and collisions
+Can have unlimited numbers                                                  Can have unlimited numbers
+
+
+Create a surface(text/image)    --> surf = pygame.image.load('path')
+Create a rect from the surface  --> rect = surf.get_rect(rect_pos)
+Change the rect    -->  rect.x += 10
+Place surface using rect   --> display_surface.blit(surface, rect)
+
+
+-------------------------------------------------------------------
