@@ -16,7 +16,11 @@ clock = pygame.time.Clock()
 
 # importing images
 ship_surf = pygame.image.load('./asteroid_shooter_files/graphics/ship.png').convert_alpha()
+# ship_reversed_surf = pygame.transform.flip(ship_surf, flip_x=False, flip_y=True)
+# ship_scaled_surf = pygame.transform.scale(ship_surf, (600, 50))
+ship_rotated_surf = pygame.transform.rotate(ship_surf, 45)
 # ship_y_pos = 500
+
 bg_surf = pygame.image.load('./asteroid_shooter_files/graphics/background.png').convert()
 ship_rect = ship_surf.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
 # print(ship_rect)
@@ -29,6 +33,11 @@ laser_rect = laser_surf.get_rect( midbottom= ship_rect.midtop)
 font = pygame.font.Font('./asteroid_shooter_files/graphics/subatomic.ttf',50)
 text_surf = font.render('Space', True,'White')
 text_rect = text_surf.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT-80))
+
+
+#drawing
+# test_rect = pygame.Rect(100, 200, 400, 500)
+# text_border = pygame.Rect(text_rect.left, text_rect.top, text_rect.width, text_rect.height)
 
 # keeps the code going
 while True:   # run forever -> keeps our game running
@@ -71,7 +80,7 @@ while True:   # run forever -> keeps our game running
     display_surface.blit(bg_surf, (0, 0))
     # ship_y_pos -= 1
     # display_surface.blit(ship_surf, (300, 500))
-    display_surface.blit(ship_surf, ship_rect)
+
     # if ship_rect.top > 0:
     #     ship_rect.y -= 4   #or  ship_rect.top -= 4 or  ship_rect.bottom -= 4
     laser_rect.y -= 10
@@ -80,8 +89,14 @@ while True:   # run forever -> keeps our game running
     display_surface.blit(text_surf, text_rect)
 
 
+    # rect drawing
+    # pygame.draw.rect(display_surface, 'purple', test_rect, width=10, border_radius=5)
+    # pygame.draw.lines(display_surface, 'red', False, [(0,0), (200,50), (300,100)])
+    # pygame.draw.rect(display_surface, 'red', text_border, width=1)
 
+    pygame.draw.rect(display_surface, 'White', text_rect.inflate(30, 30), width=8, border_radius=5 )
 
+    display_surface.blit(ship_surf, ship_rect)
 
     # 3. Show the frame to the player / update the display surface; draw the final frame
     pygame.display.update()

@@ -151,3 +151,18 @@ Place surface using rect   --> display_surface.blit(surface, rect)
 
 
 -------------------------------------------------------------------
+
+
+Extra functionality for surfaces and rects
+
+Rects can be used to draw shapes
+pygame.draw.rect()
+pygame.draw.ellipse()
+
+
+Surfaces can be transformed (like scale or flip)
+pygame.transform.scale()
+pygame.transform.flip()
+
+
+-------------------------------------------------------------------
