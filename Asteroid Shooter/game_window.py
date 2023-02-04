@@ -58,7 +58,8 @@ while True:   # run forever -> keeps our game running
         #     print(event.pos)
 
     # framerate limit
-    clock.tick(60)
+    dt = clock.tick(120) / 1000
+    # print(clock.get_fps())
 
 
 
@@ -83,7 +84,7 @@ while True:   # run forever -> keeps our game running
 
     # if ship_rect.top > 0:
     #     ship_rect.y -= 4   #or  ship_rect.top -= 4 or  ship_rect.bottom -= 4
-    laser_rect.y -= 10
+    laser_rect.y -= round(200 * dt)
     display_surface.blit(laser_surf, laser_rect)
 
     display_surface.blit(text_surf, text_rect)

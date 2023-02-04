@@ -166,3 +166,39 @@ pygame.transform.flip()
 
 
 -------------------------------------------------------------------
+
+
+Delta time
+More on time and movement
+
+The game runs at different speeds depending on the what computer it runs on
+
+                                           Huge differences
+Really slow cumputer  ------------------------------------------------------> Really fast computer
+
+We need a way to account for the game running too fast and too slow!
+Ideally, we don't want to limit the framerate because it leads to the game feeling worse
+
+Delta time
+Delta time measures how long it took to create one frame
+For example, if the framerate is 60fps, delta time is 1s/60 = 0.0167
+or about 17 milliseconds
+This information we can use to keep the same at a constant speed regardless of framerate
+We essentially multiply any movement with the delta time
+
+How framerates influence the game
+Speed(pixels per frame)        Frames per second       Delta time(seconds)      Original movement(per second)       Delta movement(per second)
+ 10                             30                      1/30 = 0.033             10*30 = 300                         10*30*0.033 = 10
+ 10                             60                      1/60 = 0.017             10*60 = 600                         10*60*0.017 = 10
+ 10                             120                     1/120 = 0.08             10*120 = 1200                       10*120*0.008 = 10
+
+ Annoying problem with delta time
+ When moving rects, we always place integers
+ This cannot be changed because we need to place them in pixel positions
+ But when moving with delta time we move via floating point numbers
+ This implicit conversion leads to data loss and inconsistent speeds
+ rect.left = 0     speed = 0.8
+    rect.left += speed  -> resct.left += 0
+
+
+-------------------------------------------------------------------
