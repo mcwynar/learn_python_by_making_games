@@ -1,5 +1,11 @@
 import pygame, sys
 
+def laser_update(laser_list, speed = 300):
+    for rect in laser_list:
+        rect.y -= speed*dt
+        if rect.bottom < 0:
+            laser_list.remove(rect)
+
 # game init
 pygame.init()
 WINDOW_WIDTH, WINDOW_HEIGHT = 1280, 720
@@ -25,8 +31,9 @@ bg_surf = pygame.image.load('./asteroid_shooter_files/graphics/background.png').
 ship_rect = ship_surf.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
 # print(ship_rect)
 laser_surf = pygame.image.load('./asteroid_shooter_files/graphics/laser.png').convert_alpha()
+laser_list = []
 # laser_rect = laser_surf.get_rect(midbottom = (ship_rect.centerx, ship_rect.top))
-laser_rect = laser_surf.get_rect( midbottom= ship_rect.midtop)
+
 
 
 # import text
@@ -56,6 +63,11 @@ while True:   # run forever -> keeps our game running
         # if event.type == pygame.MOUSEBUTTONUP:
         #     # print('Shoot')
         #     print(event.pos)
+        if event.type == pygame.MOUSEBUTTONDOWN:  # 0.5 second of delay before we can shoot again
+            print('Shoot laser')
+            laser_rect = laser_surf.get_rect(midbottom = ship_rect.midtop)
+            laser_list.append(laser_rect)
+
 
     # framerate limit
     dt = clock.tick(120) / 1000
@@ -84,8 +96,8 @@ while True:   # run forever -> keeps our game running
 
     # if ship_rect.top > 0:
     #     ship_rect.y -= 4   #or  ship_rect.top -= 4 or  ship_rect.bottom -= 4
-    laser_rect.y -= round(200 * dt)
-    display_surface.blit(laser_surf, laser_rect)
+    laser_update(laser_list)
+    # display_surface.blit(laser_surf, laser_rect)
 
     display_surface.blit(text_surf, text_rect)
 
@@ -94,6 +106,8 @@ while True:   # run forever -> keeps our game running
     # pygame.draw.rect(display_surface, 'purple', test_rect, width=10, border_radius=5)
     # pygame.draw.lines(display_surface, 'red', False, [(0,0), (200,50), (300,100)])
     # pygame.draw.rect(display_surface, 'red', text_border, width=1)
+    for rect in laser_list:
+        display_surface.blit(laser_surf, rect)
 
     pygame.draw.rect(display_surface, 'White', text_rect.inflate(30, 30), width=8, border_radius=5 )
 
