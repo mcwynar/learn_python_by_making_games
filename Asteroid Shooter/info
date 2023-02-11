@@ -262,3 +262,15 @@ You can check if 2 rects collide (i.e. overlap)
 You can check if a point is in a rect
 You can also check how close objects are to each other
 You can also do pixel perfect collisions
+
+
+-------------------------------------------------------------------
+
+
+Sound
+We import a sound file
+We use a method to play that sound
+We can also make the sound loop
+
+
+-------------------------------------------------------------------

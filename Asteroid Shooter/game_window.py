@@ -77,6 +77,12 @@ pygame.time.set_timer(meteor_timer, 500)
 # test_rect = pygame.Rect(100, 200, 400, 500)
 # text_border = pygame.Rect(text_rect.left, text_rect.top, text_rect.width, text_rect.height)
 
+# import sound
+laser_sound = pygame.mixer.Sound('./asteroid_shooter_files/sounds/laser.ogg')
+explosion_sound = pygame.mixer.Sound('./asteroid_shooter_files/sounds/explosion.wav')
+background_music = pygame.mixer.Sound('./asteroid_shooter_files/sounds/music.wav')
+background_music.play(loops=-1)
+
 # keeps the code going
 while True:  # run forever -> keeps our game running
     # DO NOT RUN THE CODE UNTIL I TELL YOU
@@ -98,7 +104,8 @@ while True:  # run forever -> keeps our game running
             #laser
             laser_rect = laser_surf.get_rect(midbottom=ship_rect.midtop)
             laser_list.append(laser_rect)
-
+            # laser sound
+            laser_sound.play()
             #timer
             can_shoot = False
             shoot_time = pygame.time.get_ticks()
@@ -159,6 +166,7 @@ while True:  # run forever -> keeps our game running
             if laser_rect.colliderect(meteor_tuple[0]):
                 meteor_list.remove(meteor_tuple)
                 laser_list.remove(laser_rect)
+                explosion_sound.play()
 
     # rect drawing
     # pygame.draw.rect(display_surface, 'purple', test_rect, width=10, border_radius=5)
