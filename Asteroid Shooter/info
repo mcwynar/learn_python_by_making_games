@@ -217,4 +217,37 @@ start time              current time
 
  If duration<current time - start time: timer is over
 
+
 -------------------------------------------------------------------
+
+
+Randomize meteors
+We can randomize it in 2 ways
+1. The start position of the meteors
+2. The direction of the meteors
+
+
+Vector2
+A vector2 is basically a better list that always contains an x and y value
+ ____
+| 2  |
+| -1 |
+|____|
+You can multiply a vector by an integer to change both values
+It can be used to move (x,y) tuples of a rect
+
+rect.center += direction * speed * dt
+              ____
+             | 2  |
+(200,300) += | -1 | * 200 * 0.017
+             |____|
+
+              _____
+             | 400 |
+(200,300) += | 200 | * 0.017
+             |_____|
+
+              _____
+             | 6.8 |
+(200,300) += | -3.4| = (206.8, 296.6)
+             |_____|
