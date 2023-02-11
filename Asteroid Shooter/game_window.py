@@ -146,6 +146,20 @@ while True:  # run forever -> keeps our game running
     # display_surface.blit(laser_surf, laser_rect)
 
 
+    # meteor ship collisions
+    for meteor_tuple in meteor_list:
+        meteor_rect = meteor_tuple[0]
+        if ship_rect.colliderect(meteor_rect):
+            pygame.quit()
+            sys.exit()
+
+    # laser meteor collisions
+    for laser_rect in laser_list:
+        for meteor_tuple in meteor_list:
+            if laser_rect.colliderect(meteor_tuple[0]):
+                meteor_list.remove(meteor_tuple)
+                laser_list.remove(laser_rect)
+
     # rect drawing
     # pygame.draw.rect(display_surface, 'purple', test_rect, width=10, border_radius=5)
     # pygame.draw.lines(display_surface, 'red', False, [(0,0), (200,50), (300,100)])

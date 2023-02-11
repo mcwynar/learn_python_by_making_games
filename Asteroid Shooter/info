@@ -251,3 +251,14 @@ rect.center += direction * speed * dt
              | 6.8 |
 (200,300) += | -3.4| = (206.8, 296.6)
              |_____|
+
+
+-------------------------------------------------------------------
+
+
+Collisions
+Pygame can detect a lot of collisions
+You can check if 2 rects collide (i.e. overlap)
+You can check if a point is in a rect
+You can also check how close objects are to each other
+You can also do pixel perfect collisions
