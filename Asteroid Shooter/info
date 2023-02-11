@@ -202,3 +202,19 @@ Speed(pixels per frame)        Frames per second       Delta time(seconds)      
 
 
 -------------------------------------------------------------------
+
+
+Time in pygame
+Pygame can get the time since we started the game(or since pygame.init())
+And we can create repeated timers
+
+
+How to create a timer
+We check the time twice
+
+start time              current time
+   200                      350
+
+ If duration<current time - start time: timer is over
+
+-------------------------------------------------------------------

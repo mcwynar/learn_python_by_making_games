@@ -1,10 +1,26 @@
-import pygame, sys
+import pygame
+import sys
 
-def laser_update(laser_list, speed = 300):
+
+def laser_update(laser_list, speed=300):
     for rect in laser_list:
-        rect.y -= speed*dt
+        rect.y -= speed * dt
         if rect.bottom < 0:
             laser_list.remove(rect)
+
+def display_score():
+    score_text = f'Score:{pygame.time.get_ticks() // 1000} '
+    text_surf = font.render(score_text, True, 'White')
+    text_rect = text_surf.get_rect(center=(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 80))
+    display_surface.blit(text_surf, text_rect)
+    pygame.draw.rect(display_surface, 'White', text_rect.inflate(30, 30), width=8, border_radius=5)
+
+def laser_timer(can_shoot, duration = 500):
+    if not can_shoot:
+        current_time = pygame.time.get_ticks()
+        if current_time - shoot_time > duration:
+            can_shoot = True
+    return can_shoot
 
 # game init
 pygame.init()
@@ -28,26 +44,25 @@ ship_rotated_surf = pygame.transform.rotate(ship_surf, 45)
 # ship_y_pos = 500
 
 bg_surf = pygame.image.load('./asteroid_shooter_files/graphics/background.png').convert()
-ship_rect = ship_surf.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
+ship_rect = ship_surf.get_rect(center=(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2))
 # print(ship_rect)
 laser_surf = pygame.image.load('./asteroid_shooter_files/graphics/laser.png').convert_alpha()
 laser_list = []
 # laser_rect = laser_surf.get_rect(midbottom = (ship_rect.centerx, ship_rect.top))
 
-
+#laser timer
+can_shoot = True
+shoot_time = None
 
 # import text
-font = pygame.font.Font('./asteroid_shooter_files/graphics/subatomic.ttf',50)
-text_surf = font.render('Space', True,'White')
-text_rect = text_surf.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT-80))
+font = pygame.font.Font('./asteroid_shooter_files/graphics/subatomic.ttf', 50)
 
-
-#drawing
+# drawing
 # test_rect = pygame.Rect(100, 200, 400, 500)
 # text_border = pygame.Rect(text_rect.left, text_rect.top, text_rect.width, text_rect.height)
 
 # keeps the code going
-while True:   # run forever -> keeps our game running
+while True:  # run forever -> keeps our game running
     # DO NOT RUN THE CODE UNTIL I TELL YOU
 
     # 1. Input  -> events (mouse click, mouse movement, press of a button, controller or touchscreen)
@@ -63,20 +78,20 @@ while True:   # run forever -> keeps our game running
         # if event.type == pygame.MOUSEBUTTONUP:
         #     # print('Shoot')
         #     print(event.pos)
-        if event.type == pygame.MOUSEBUTTONDOWN:  # 0.5 second of delay before we can shoot again
-            print('Shoot laser')
-            laser_rect = laser_surf.get_rect(midbottom = ship_rect.midtop)
+        if event.type == pygame.MOUSEBUTTONDOWN and can_shoot:
+            #laser
+            laser_rect = laser_surf.get_rect(midbottom=ship_rect.midtop)
             laser_list.append(laser_rect)
 
+            #timer
+            can_shoot = False
+            shoot_time = pygame.time.get_ticks()
 
     # framerate limit
     dt = clock.tick(120) / 1000
     # print(clock.get_fps())
 
-
-
-
-    #mouse input
+    # mouse input
     # print(pygame.mouse.get_pos())
     # print(pygame.mouse.get_pressed())
     ship_rect.center = pygame.mouse.get_pos()
@@ -94,22 +109,23 @@ while True:   # run forever -> keeps our game running
     # ship_y_pos -= 1
     # display_surface.blit(ship_surf, (300, 500))
 
+    display_score()
     # if ship_rect.top > 0:
     #     ship_rect.y -= 4   #or  ship_rect.top -= 4 or  ship_rect.bottom -= 4
     laser_update(laser_list)
+    can_shoot = laser_timer(can_shoot, 500)
     # display_surface.blit(laser_surf, laser_rect)
-
-    display_surface.blit(text_surf, text_rect)
 
 
     # rect drawing
     # pygame.draw.rect(display_surface, 'purple', test_rect, width=10, border_radius=5)
     # pygame.draw.lines(display_surface, 'red', False, [(0,0), (200,50), (300,100)])
     # pygame.draw.rect(display_surface, 'red', text_border, width=1)
+
     for rect in laser_list:
         display_surface.blit(laser_surf, rect)
 
-    pygame.draw.rect(display_surface, 'White', text_rect.inflate(30, 30), width=8, border_radius=5 )
+
 
     display_surface.blit(ship_surf, ship_rect)
 
